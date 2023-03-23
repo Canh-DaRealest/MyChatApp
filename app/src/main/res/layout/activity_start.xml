@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ln_start_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="@color/bg_main_color"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingHorizontal="@dimen/dimen_20">
+
+
+    <TableRow
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|start"
+        android:layout_marginTop="@dimen/dimen_20"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="@dimen/dimen_60"
+            android:layout_height="@dimen/dimen_60"
+            android:src="@drawable/ic_icon" />
+
+        <LinearLayout
+            android:layout_marginHorizontal="@dimen/dimen_10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/dimen_15"
+                android:fontFamily="sans-serif-light"
+                android:text="@string/app_name"
+                android:textColor="@color/text_color"
+                android:textSize="@dimen/dimen_25" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|start"
+                android:fontFamily="sans-serif-light"
+                android:text="Xin chào"
+                android:textColor="@color/black"
+                android:textSize="@dimen/dimen_16" />
+
+        </LinearLayout>
+
+    </TableRow>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tl_start_tablayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_25"
+        android:background="@color/bg_main_color"
+        app:tabBackground="@color/bg_main_color"
+        app:tabIndicatorColor="@color/text_color"
+        app:tabMode="fixed"
+        app:tabSelectedTextColor="@color/text_color"
+        app:tabTextColor="@color/text_hint_color" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/vp2_start_viewpager2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/dimen_20"
+        android:fontFamily="sans-serif-light"
+        android:text="@string/continue_with"
+        android:textAllCaps="false"
+        android:textColor="@color/text_color"
+        android:textSize="@dimen/text_13" />
+
+
+    <ImageView
+        android:id="@+id/iv_login_via_google"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dimen_30"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/dimen_20"
+        android:adjustViewBounds="true"
+        android:drawableStart="@drawable/ic_icon"
+        android:fontFamily="sans-serif"
+        android:src="@drawable/ic_google"
+        android:text="Tiếp tục với Google"
+        android:textAllCaps="false"
+        android:textColor="@color/button_login"
+        android:textSize="@dimen/text_13" />
+
+
+</LinearLayout>

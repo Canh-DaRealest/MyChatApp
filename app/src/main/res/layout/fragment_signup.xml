@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ln_register_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@color/bg_main_color"
+    android:clickable="true"
+    android:focusable="true"
+    android:gravity="center"
+    android:orientation="vertical">
+
+
+    <EditText
+        android:id="@+id/edt_signup_email"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_56"
+        android:layout_gravity="center"
+        android:layout_marginHorizontal="@dimen/dimen_20"
+        android:layout_marginTop="@dimen/dimen_20"
+        android:autofillHints="emailAddress"
+        android:background="@drawable/bg_edittext"
+        android:gravity="center_vertical"
+        android:hint="@string/email"
+        android:imeOptions="actionNext"
+        android:inputType="text"
+        android:paddingHorizontal="@dimen/dimen_10"
+        android:singleLine="true"
+        android:text=""
+        android:textColor="@color/text_color"
+        android:textColorHint="@color/text_hint_color"
+        android:textSize="@dimen/text_17" />
+
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dimen_20"
+        android:layout_marginTop="@dimen/dimen_25"
+        android:background="@drawable/bg_edittext">
+
+
+        <EditText
+            android:id="@+id/edt_signup_password"
+            android:layout_width="@dimen/dimen_0"
+            android:layout_height="@dimen/dimen_56"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:autofillHints="password"
+            android:background="@null"
+            android:gravity="center_vertical"
+            android:hint="@string/password"
+            android:imeOptions="actionDone"
+            android:inputType="textPassword"
+            android:paddingStart="@dimen/dimen_10"
+            android:paddingEnd="@dimen/dimen_0"
+            android:singleLine="true"
+            android:text=""
+            android:textColor="@color/text_color"
+            android:textColorHint="@color/text_hint_color"
+            android:textSize="@dimen/text_17" />
+
+        <FrameLayout
+            android:layout_width="@dimen/dimen_48"
+            android:layout_height="match_parent"
+            android:layout_gravity="center|end">
+
+            <ImageView
+
+                android:id="@+id/iv_signup_show_pass"
+                android:layout_width="@dimen/dimen_24"
+                android:layout_height="@dimen/dimen_24"
+                android:layout_gravity="center"
+                android:adjustViewBounds="true"
+                android:src="@drawable/ic_password_off" />
+
+
+        </FrameLayout>
+    </TableRow>
+
+
+    <Button
+
+        android:id="@+id/bt_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/dimen_15"
+        android:backgroundTint="@color/button_sign_up"
+        android:gravity="center"
+        android:text="Đăng ký"
+
+        />
+
+</LinearLayout>
