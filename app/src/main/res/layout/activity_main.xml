@@ -34,7 +34,7 @@
                     android:id="@+id/ci_user_image"
                     android:layout_width="@dimen/dimen_30"
                     android:layout_height="@dimen/dimen_30"
-                    android:src="@drawable/ic_user" />
+                    android:src="@drawable/ic_menu" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -42,7 +42,7 @@
                     android:layout_gravity="center"
                     android:fontFamily="sans-serif-black"
                     android:paddingHorizontal="@dimen/dimen_10"
-                    android:text="Đoạn chat"
+                    android:text="Danh sách"
                     android:textColor="@color/text_color"
                     android:textSize="@dimen/text_20"
                     android:textStyle="bold" />
