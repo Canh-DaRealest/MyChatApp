@@ -1,5 +1,6 @@
 package com.canhmai.chatapp.activity
 
+import android.os.Handler
 import androidx.activity.viewModels
 import com.canhmai.chatapp.adapter.ViewPager
 import com.canhmai.chatapp.base.BaseActivity
@@ -35,12 +36,16 @@ class SplashActivity : BaseActivity<AcitvitySpashBinding, StartActVM>() {
 
     override fun onStart() {
         super.onStart()
-        if (auth.currentUser != null) {
-            this.openActivity(MainActivity::class.java)
+        val handler: Handler = Handler()
+        handler.postDelayed(Runnable {
+            if (auth.currentUser != null) {
+                this.openActivity(MainActivity::class.java)
 
-        }else{
-            this.openActivity(StartActivity::class.java)
-        }
+            } else {
+                this.openActivity(StartActivity::class.java)
+            }
+
+        }, 2000)
     }
 
 
