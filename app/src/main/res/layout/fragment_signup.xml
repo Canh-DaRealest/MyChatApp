@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/ln_register_container"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:layout_gravity="center"
     android:background="@color/bg_main_color"
     android:clickable="true"
@@ -11,86 +11,196 @@
     android:gravity="center"
     android:orientation="vertical">
 
-
-    <EditText
-        android:id="@+id/edt_signup_email"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_56"
+        android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:layout_marginHorizontal="@dimen/dimen_20"
-        android:layout_marginTop="@dimen/dimen_20"
-        android:autofillHints="emailAddress"
-        android:background="@drawable/bg_edittext"
-        android:gravity="center_vertical"
-        android:hint="@string/email"
-        android:imeOptions="actionNext"
-        android:inputType="text"
-        android:paddingHorizontal="@dimen/dimen_10"
-        android:singleLine="true"
-        android:text=""
-        android:textColor="@color/text_color"
-        android:textColorHint="@color/text_hint_color"
-        android:textSize="@dimen/text_17" />
+        android:gravity="center"
+        android:orientation="vertical">
 
-
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/dimen_20"
-        android:layout_marginTop="@dimen/dimen_25"
-        android:background="@drawable/bg_edittext">
-
-
-        <EditText
-            android:id="@+id/edt_signup_password"
-            android:layout_width="@dimen/dimen_0"
-            android:layout_height="@dimen/dimen_56"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:autofillHints="password"
-            android:background="@null"
-            android:gravity="center_vertical"
-            android:hint="@string/password"
-            android:imeOptions="actionDone"
-            android:inputType="textPassword"
-            android:paddingStart="@dimen/dimen_10"
-            android:paddingEnd="@dimen/dimen_0"
-            android:singleLine="true"
-            android:text=""
-            android:textColor="@color/text_color"
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dimen_15"
+            android:layout_marginTop="@dimen/dimen_20"
+            android:autofillHints="name"
+            android:hint="Tên"
+            android:paddingHorizontal="@dimen/dimen_10"
             android:textColorHint="@color/text_hint_color"
-            android:textSize="@dimen/text_17" />
+            app:boxStrokeColor="@color/black"
+            app:endIconMode="clear_text"
+            app:endIconTint="@color/black">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edt_signup_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:autofillHints="emailAddress"
+                android:gravity="center_vertical"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:singleLine="true"
+                android:text=""
+                android:textColor="@color/text_color"
+
+                android:textSize="@dimen/text_17" />
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dimen_15"
+            android:layout_marginTop="@dimen/dimen_20"
+            android:autofillHints="emailAddress"
+            android:hint="@string/email"
+            android:paddingHorizontal="@dimen/dimen_10"
+            android:textColorHint="@color/text_hint_color"
+            app:boxStrokeColor="@color/black"
+            app:endIconMode="clear_text">
+
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edt_signup_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:autofillHints="emailAddress"
+                android:gravity="center_vertical"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:singleLine="true"
+                android:text=""
+                android:textColor="@color/text_color"
+                android:textSize="@dimen/text_17"
+
+                app:endIconTint="@color/black" />
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dimen_15"
+            android:layout_marginTop="@dimen/dimen_20"
+            android:autofillHints="name"
+            android:hint="@string/password"
+            android:paddingHorizontal="@dimen/dimen_10"
+
+            android:textColorHint="@color/text_hint_color"
+            app:boxStrokeColor="@color/black"
+            app:endIconMode="password_toggle"
+            app:endIconTint="@color/black">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edt_signup_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:autofillHints="password"
+                android:gravity="center_vertical"
+                android:imeOptions="actionNext"
+                android:inputType="textPassword"
+                android:singleLine="true"
+                android:text=""
+                android:textColor="@color/text_color"
+
+                android:textSize="@dimen/text_17" />
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dimen_15"
+            android:layout_marginTop="@dimen/dimen_20"
+            android:autofillHints="name"
+            android:hint="Xác nhận mật khẩu"
+            android:paddingHorizontal="@dimen/dimen_10"
+            android:textColorHint="@color/text_hint_color"
+            app:boxStrokeColor="@color/black"
+            app:endIconMode="password_toggle"
+            app:endIconTint="@color/black">
+
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edt_signup_confirm_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:autofillHints="password"
+                android:gravity="center_vertical"
+                android:imeOptions="actionDone"
+                android:inputType="textPassword"
+                android:singleLine="true"
+                android:text=""
+                android:textColor="@color/text_color"
+
+                android:textSize="@dimen/text_17" />
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+
 
         <FrameLayout
-            android:layout_width="@dimen/dimen_48"
-            android:layout_height="match_parent"
-            android:layout_gravity="center|end">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
 
-            <ImageView
 
-                android:id="@+id/iv_signup_show_pass"
-                android:layout_width="@dimen/dimen_24"
-                android:layout_height="@dimen/dimen_24"
+            <LinearLayout
+                android:id="@+id/ln_progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:adjustViewBounds="true"
-                android:src="@drawable/ic_password_off" />
+                android:layout_marginTop="@dimen/dimen_10"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone">
 
 
+                <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:indeterminate="true"
+                    android:indeterminateTint="@color/button_login" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/dimen_10"
+                    android:fontFamily="sans-serif-light"
+                    android:text="Đang xử lý"
+                    android:textColor="@color/text_color"
+                    android:textSize="@dimen/text_16" />
+
+            </LinearLayout>
+
+            <Button
+
+                android:id="@+id/bt_register"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/dimen_15"
+                android:backgroundTint="@color/button_sign_up"
+                android:gravity="center"
+                android:text="Đăng ký"
+
+                />
         </FrameLayout>
-    </TableRow>
 
 
-    <Button
+    </LinearLayout>
 
-        android:id="@+id/bt_register"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/dimen_15"
-        android:backgroundTint="@color/button_sign_up"
-        android:gravity="center"
-        android:text="Đăng ký"
-
-        />
-
-</LinearLayout>
+</androidx.core.widget.NestedScrollView>

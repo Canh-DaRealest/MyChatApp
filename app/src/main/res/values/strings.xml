@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">My Chat</string>
-    <string name="SHA1_KEY">56:59:DF:E6:21:D9:3B:C6:FE:24:6F:D0:EA:07:2F:34:A0:80:08:4E</string>
+    <string name="SHA1_LAP_KEY">45:AB:9B:6B:D3:48:DF:4D:92:CD:6C:CD:E9:6F:22:1C:C7:86:CB:B0</string>
+    <string name="SHA1_PC_KEY">56:59:DF:E6:21:D9:3B:C6:FE:24:6F:D0:EA:07:2F:34:A0:80:08:4E</string>
     <string name="email">Email</string>
     <string name="password">Mật khẩu</string>
     <string name="login">Đăng nhập</string>
@@ -10,6 +11,5 @@
     <string name="more">Thêm</string>
     <string name="content_description_more">sign out</string>
     <string name="sign_out">Đăng xuất</string>
-
 
 </resources>

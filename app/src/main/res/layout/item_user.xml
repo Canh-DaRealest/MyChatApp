@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cv_item_frieng_msg"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/bg_main_color"
+
+    android:orientation="horizontal"
+    android:paddingHorizontal="@dimen/dimen_10"
+    app:cardBackgroundColor="@color/bg_main_color">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingVertical="@dimen/dimen_10">
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_5">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/ci_item_friend_image"
+                android:layout_width="@dimen/dimen_48"
+                android:layout_height="@dimen/dimen_48"
+                android:layout_gravity="center"
+
+
+                android:src="@drawable/ic_user" />
+
+
+            <View
+                android:id="@+id/v_item_online"
+                android:layout_width="@dimen/dimen_10"
+                android:layout_height="@dimen/dimen_10"
+                android:layout_gravity="center|bottom|end"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginStart="5dp"
+                android:background="@drawable/ic_online" />
+
+        </FrameLayout>
+
+
+        <TextView
+            android:id="@+id/tv_item_friend_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="@dimen/dimen_10"
+            android:fontFamily="sans-serif"
+            android:text="Friend name"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/text_18"
+            android:textStyle="bold" />
+
+
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

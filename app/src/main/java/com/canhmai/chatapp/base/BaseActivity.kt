@@ -4,8 +4,10 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModel
 import androidx.viewbinding.ViewBinding
+import com.canhmai.chatapp.`interface`.OnShowSnackbar
 
-abstract class BaseActivity<VB : ViewBinding, VM : ViewModel> : AppCompatActivity(){
+abstract class BaseActivity<VB : ViewBinding, VM : ViewModel> : AppCompatActivity(),
+    OnShowSnackbar {
     protected lateinit var viewModel: VM
 
     protected lateinit var binding: VB
@@ -53,8 +55,13 @@ abstract class BaseActivity<VB : ViewBinding, VM : ViewModel> : AppCompatActivit
         super.onDetachedFromWindow()
     }
 
+    override fun onShowSnackbar(msg: String) {
+        showError(msg)
+    }
 
+    open fun showError(msg: String) {
 
+    }
 
 
 }

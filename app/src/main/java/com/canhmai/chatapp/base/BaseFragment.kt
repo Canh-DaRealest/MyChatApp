@@ -3,7 +3,6 @@ package com.canhmai.chatapp.base
 import android.content.Context
 
 
-
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,12 +11,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.viewbinding.ViewBinding
+import com.canhmai.chatapp.`interface`.OnShowSnackbar
 
-abstract class BaseFragment<VB: ViewBinding, VM: ViewModel>:Fragment() {
+abstract class BaseFragment<VB : ViewBinding, VM : ViewModel> : Fragment() {
 
     /* activity context */
     protected lateinit var parentActivity: AppCompatActivity
-
+    lateinit var onShowSnackbar: OnShowSnackbar
     protected lateinit var viewModel: VM
     private var _binding: VB? = null
     val binding
@@ -25,8 +25,13 @@ abstract class BaseFragment<VB: ViewBinding, VM: ViewModel>:Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
+        try {
+            onShowSnackbar = context as OnShowSnackbar
+            parentActivity = context as AppCompatActivity
+        } catch (e: ClassCastException) {
+            throw java.lang.ClassCastException("$context ${e.message}, ${e.localizedMessage}")
+        }
 
-        parentActivity = context as AppCompatActivity
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -67,7 +72,6 @@ abstract class BaseFragment<VB: ViewBinding, VM: ViewModel>:Fragment() {
     }
 
 
-
     protected open fun clickView(v: View?) {
 
     }
@@ -80,5 +84,8 @@ abstract class BaseFragment<VB: ViewBinding, VM: ViewModel>:Fragment() {
 
     }
 
+    open fun showErrorSnackBar(msg: String) {
+        onShowSnackbar.onShowSnackbar(msg)
+    }
 
 }

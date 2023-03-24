@@ -1,57 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawerlayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_main_color"
     android:orientation="vertical"
     tools:context=".activity.MainActivity">
 
-    <com.google.android.material.appbar.AppBarLayout
+    <LinearLayout
+        android:id="@+id/ln_linear_inside"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/button_login"
-        android:backgroundTint="@color/button_login"
-        app:liftOnScroll="true">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/topAppBar"
-            style="@style/Widget.MaterialComponents.Toolbar.Primary"
+        <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_height="wrap_content"
+            android:background="@color/button_login"
             android:backgroundTint="@color/button_login"
-            android:gravity="center_vertical"
-            app:menu="@menu/top_app_bar">
+            app:liftOnScroll="true">
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/ci_user_image"
-                android:layout_width="@dimen/dimen_30"
-                android:layout_height="@dimen/dimen_30"
-                android:src="@drawable/ic_user" />
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/topAppBar"
+                style="@style/Widget.MaterialComponents.Toolbar.Primary"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:backgroundTint="@color/button_login"
+                android:gravity="center_vertical">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/ci_user_image"
+                    android:layout_width="@dimen/dimen_30"
+                    android:layout_height="@dimen/dimen_30"
+                    android:src="@drawable/ic_user" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="sans-serif-black"
+                    android:paddingHorizontal="@dimen/dimen_10"
+                    android:text="Đoạn chat"
+                    android:textColor="@color/text_color"
+                    android:textSize="@dimen/text_20"
+                    android:textStyle="bold" />
+
+
+            </com.google.android.material.appbar.MaterialToolbar>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_message_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingVertical="@dimen/dimen_20"
+            tools:listitem="@layout/item_user" />
+
+    </LinearLayout>
+
+
+    <FrameLayout
+        android:layout_width="@dimen/dimen_250"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="@color/bg_main_color"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_56"
+            android:background="@color/button_login"
+            android:backgroundTint="@color/button_login"
+            app:liftOnScroll="true">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:fontFamily="sans-serif-black"
-                android:paddingHorizontal="@dimen/dimen_10"
-                android:text="Đoạn chat"
+                android:gravity="center"
+                android:text="Cài đặt"
                 android:textColor="@color/text_color"
                 android:textSize="@dimen/text_20"
                 android:textStyle="bold" />
+        </com.google.android.material.appbar.AppBarLayout>
 
+        <Button
+            android:id="@+id/bt_sign_out"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginBottom="@dimen/dimen_25"
+            android:backgroundTint="@color/button_sign_up"
+            android:fontFamily="sans-serif-light"
+            android:text="Đăng xuất"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/text_16" />
+    </FrameLayout>
 
-        </com.google.android.material.appbar.MaterialToolbar>
-
-    </com.google.android.material.appbar.AppBarLayout>
-
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_message_list"
-        android:layout_width="match_parent"
-        tools:listitem="@layout/item_message_list"
-        android:layout_height="match_parent"
-        android:padding="@dimen/dimen_20" />
-
-</LinearLayout>
+</androidx.drawerlayout.widget.DrawerLayout>

@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_main_color"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_56"
+            android:background="@color/button_login"
+            android:backgroundTint="@color/bg_main_color"
+            android:elevation="@dimen/dimen_15"
+            android:gravity="center|start"
+            android:orientation="horizontal"
+            app:elevation="@dimen/dimen_10"
+            app:liftOnScroll="true">
+
+
+            <ImageView
+                android:id="@+id/iv_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/dimen_10"
+                android:src="@drawable/ic_back" />
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp">
+
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/ci_user_image"
+                    android:layout_width="@dimen/dimen_30"
+                    android:layout_height="@dimen/dimen_30"
+                    android:src="@drawable/ic_user" />
+
+                <View
+                    android:id="@+id/v_isOnline"
+                    android:layout_width="7dp"
+                    android:layout_height="7dp"
+                    android:layout_gravity="center|bottom|end"
+                    android:background="@drawable/ic_online" />
+
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_friend_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|start"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif-light"
+
+                    android:singleLine="true"
+                    android:text="User"
+                    android:textColor="@color/text_color"
+                    android:textSize="@dimen/text_20" />
+
+                <TextView
+                    android:id="@+id/tv_onLineState"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|start"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif-light"
+
+                    android:singleLine="true"
+                    android:text="Đang hoạt động"
+                    android:textColor="@color/text_color"
+                    android:textSize="@dimen/text_14" />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_chat_msg"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:padding="@dimen/dimen_15"
+            tools:listitem="@layout/item_message_receiver" />
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingHorizontal="@dimen/dimen_5"
+            android:paddingVertical="10dp">
+
+            <ImageView
+                android:id="@+id/iv_sent_image"
+                android:layout_width="@dimen/dimen_40"
+                android:layout_height="@dimen/dimen_40"
+                android:layout_marginHorizontal="@dimen/dimen_10"
+                android:adjustViewBounds="true"
+                android:src="@drawable/ic_image" />
+
+            <EditText
+                android:id="@+id/edt_chat"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/bg_chat_edt"
+                android:fontFamily="sans-serif-light"
+                android:hint="Nhắn tin"
+                android:padding="@dimen/dimen_15"
+                android:paddingHorizontal="@dimen/dimen_5"
+                android:textColor="@color/text_color"
+                android:textColorHint="@color/text_color"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:id="@+id/bt_send"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/dimen_10"
+                android:adjustViewBounds="true"
+                android:src="@drawable/ic_send" />
+        </TableRow>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ln_layout_send_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginStart="@dimen/dimen_50"
+        android:layout_marginBottom="@dimen/dimen_70"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+
+        <ImageView
+            android:id="@+id/iv_image_contaainer"
+            android:layout_width="@dimen/dimen_96"
+            android:layout_height="@dimen/dimen_96"
+            android:src="@drawable/ic_image" />
+
+
+        <LinearLayout
+
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <ImageView
+                android:id="@+id/iv_clear"
+                android:layout_width="@dimen/dimen_16"
+                android:layout_height="@dimen/dimen_16"
+                android:background="#A4DDA6"
+                android:src="@drawable/ic_clear" />
+
+            <TextView
+                android:id="@+id/tv_send_image"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_gravity="end|bottom"
+                android:layout_weight="1"
+                android:fontFamily="sans-serif"
+                android:gravity="bottom"
+                android:text="Gửi"
+                android:textColor="@color/button_login"
+                android:textSize="@dimen/text_16"
+
+                android:textStyle="bold" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

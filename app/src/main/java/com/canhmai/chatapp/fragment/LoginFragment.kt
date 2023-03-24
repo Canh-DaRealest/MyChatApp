@@ -6,13 +6,13 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
+import com.canhmai.chatapp.activity.MainActivity
 import com.canhmai.chatapp.base.BaseFragment
 import com.canhmai.chatapp.databinding.FragmentLoginBinding
 import com.canhmai.chatapp.extension.auth
-import com.canhmai.chatapp.extension.handlePasswordVisibility
+import com.canhmai.chatapp.extension.openActivity
 import com.canhmai.chatapp.extension.showSnackBar
 import com.canhmai.chatapp.until.CommonUntil
-import com.canhmai.chatapp.until.DialogUntil
 import com.canhmai.chatapp.viewmodel.StartActVM
 import com.google.firebase.auth.FirebaseUser
 
@@ -51,14 +51,9 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, StartActVM>() {
     private fun initClickListener() {
 
 
-        binding.ivLoginShowPass.setOnClickListener {
-            binding.edtLoginPassword.handlePasswordVisibility(
-                binding.ivLoginShowPass
-            )
-        }
         binding.btLogin.setOnClickListener {
-            val email = binding.edtLoginEmail.text.toString()
-            val password = binding.edtLoginPassword.text.toString()
+            val email = binding.edtLoginEmail.text?.trim().toString()
+            val password = binding.edtLoginPassword.text?.trim().toString()
 
             signInWithEmailPassword(email, password)
 
@@ -66,10 +61,9 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, StartActVM>() {
         }
     }
 
-
     private fun signInWithEmailPassword(email: String, password: String) {
 
-
+        hideView(true)
         var msg: String
 
         if (email.isEmpty() || password.isEmpty()) {
@@ -78,9 +72,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, StartActVM>() {
             return
         }
 
-        DialogUntil.showDialog(
-            parentActivity
-        )
+
         // [START sign_in_with_email]
         CommonUntil.closeKeyboard(parentActivity)
 
@@ -95,11 +87,13 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, StartActVM>() {
                     // If sign in fails, display a message to the user.
 
                     msg = CommonUntil.catchFireBaseException(task)
-                    parentActivity.showSnackBar(binding.lnLoginFrgContainer, msg, false)
+
+                    showErrorSnackBar(msg)
+                    Log.e(TAG, "signInWithEmailPassword: ", task.exception)
 
                 }
-                DialogUntil.dismissDialog(
-                )
+
+                hideView(false)
             }
     }
 
@@ -108,14 +102,23 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, StartActVM>() {
             Toast.makeText(parentActivity, "đăng nhập thành công", Toast.LENGTH_SHORT).show()
             Log.i(
                 ContentValues.TAG,
-                "sign in success: ${user.email}, ${user.displayName}, ${user.getIdToken(false)}"
+                "sign in success: ${user.email}, ${user.displayName}, ${user.uid}"
             )
-            viewModel.updateLiveData(user)
+            parentActivity.openActivity(MainActivity::class.java)
         } else {
             Toast.makeText(parentActivity, "đăng nhập thất bại", Toast.LENGTH_SHORT).show()
         }
 
     }
 
+    private fun hideView(state: Boolean) {
+        if (state) {
+            binding.btLogin.visibility = View.GONE
+            binding.lnProgress.visibility = View.VISIBLE
+        } else {
+            binding.btLogin.visibility = View.VISIBLE
+            binding.lnProgress.visibility = View.GONE
+        }
+    }
 
 }

@@ -1,22 +1,27 @@
 package com.canhmai.chatapp.fragment
 
-import android.content.ContentValues
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
+import com.canhmai.chatapp.activity.MainActivity
 import com.canhmai.chatapp.base.BaseFragment
 import com.canhmai.chatapp.databinding.FragmentSignupBinding
 import com.canhmai.chatapp.extension.auth
-import com.canhmai.chatapp.extension.handlePasswordVisibility
+import com.canhmai.chatapp.extension.openActivity
 import com.canhmai.chatapp.extension.showSnackBar
+import com.canhmai.chatapp.model.User
+
 import com.canhmai.chatapp.until.CommonUntil
-import com.canhmai.chatapp.until.DialogUntil
 import com.canhmai.chatapp.viewmodel.StartActVM
+
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
 class SignUpFragment : BaseFragment<FragmentSignupBinding, StartActVM>() {
+    lateinit var reference: DatabaseReference
 
 
     companion object {
@@ -51,71 +56,96 @@ class SignUpFragment : BaseFragment<FragmentSignupBinding, StartActVM>() {
     private fun initClickListener() {
 
 
-        binding.ivSignupShowPass.setOnClickListener {
-            binding.edtSignupPassword.handlePasswordVisibility(
-                binding.ivSignupShowPass
-            )
-        }
         binding.btRegister.setOnClickListener {
-            val email = binding.edtSignupEmail.text.toString()
-            val password = binding.edtSignupPassword.text.toString()
+            val email = binding.edtSignupEmail.text?.trim().toString()
+            val password = binding.edtSignupPassword.text?.trim().toString()
+            val name = binding.edtSignupName.text?.trim().toString()
+            val password2 = binding.edtSignupConfirmPassword.text?.trim().toString()
 
-            signInWithEmailPassword(email, password)
-
+            signUpWithEmailPassword(name, email, password, password2)
 
         }
     }
 
 
-    private fun signInWithEmailPassword(email: String, password: String) {
-
+    private fun signUpWithEmailPassword(
+        name: String,
+        email: String,
+        password: String,
+        password2: String
+    ) {
 
         var msg: String
 
-        if (email.isEmpty() || password.isEmpty()) {
-            msg = "Email hoặc mật khẩu không được để trống!"
+        if (email.isEmpty() || password.isEmpty() || name.isEmpty() || password2.isEmpty()) {
+            msg = "Bạn chưa điền đầy đủ thông tin"
             requireContext().showSnackBar(binding.lnRegisterContainer, msg, false)
             return
         }
-        DialogUntil.showDialog(
-            parentActivity
-        )
-        CommonUntil.closeKeyboard(parentActivity)
+        if (password2 != password) {
+            msg = "Mật khẩu không khớp"
+            requireContext().showSnackBar(binding.lnRegisterContainer, msg, false)
+            return
+        }
 
+        CommonUntil.closeKeyboard(parentActivity)
+        hideView(true)
         // [START sign_in_with_email]
 
-        auth.signInWithEmailAndPassword(email, password)
+        auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(parentActivity) { task ->
                 if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
 
-                    val user = auth.currentUser
-                    updateUI(user)
+                    val user: FirebaseUser? = auth.currentUser
+                    val userId: String = user!!.uid
+                    reference = FirebaseDatabase.getInstance().getReference("Users").child(userId)
+                    val hashMap: HashMap<String, String> = HashMap()
+                    hashMap.put("userId", userId)
+                    hashMap.put("userName", name)
+                    hashMap.put("userImage", "default")
+                    hashMap.put("email", user.email!!)
+                    hashMap.put("lastMsg", "")
+                    hashMap.put("lastTime", "")
+                    hashMap.put("status", "online")
+
+                    reference.setValue(hashMap)
+                        .addOnCompleteListener(requireActivity()) { task ->
+
+                            if (task.isSuccessful) {
+
+                                parentActivity.openActivity(MainActivity::class.java)
+                                Toast.makeText(
+                                    requireContext(),
+                                    "Đăng ký thành công ",
+                                    Toast.LENGTH_SHORT
+                                )
+                                    .show()
+                            } else {
+                                Log.e(TAG, "error update user: ", task.exception)
+                            }
+
+                        }
+
                 } else {
-                    // If sign in fails, display a message to the user.
-                    Toast.makeText(requireContext(), "Đăng ký thất bại", Toast.LENGTH_SHORT).show()
-                    msg = CommonUntil.catchFireBaseException(task)
-                    //     parentActivity.showSnackBar(binding.lnLoginFrgContainer, msg, false)
 
+                    msg = CommonUntil.catchFireBaseException(task)
+
+                    showErrorSnackBar("Đăng ký thất bại, $msg")
+                    Log.e(TAG, "signInWithEmailPassword: ", task.exception)
                 }
-                DialogUntil.dismissDialog(
-                )
+                hideView(false)
             }
     }
 
-    private fun updateUI(user: FirebaseUser?) {
-        if (user != null) {
-            Toast.makeText(parentActivity, "đăng nhập thành công", Toast.LENGTH_SHORT).show()
-            Log.i(
-                ContentValues.TAG,
-                "sign in success: ${user.email}, ${user.displayName}, ${user.getIdToken(false)}"
-            )
-            viewModel.updateLiveData(user)
+
+    private fun hideView(state: Boolean) {
+        if (state) {
+            binding.btRegister.visibility = View.GONE
+            binding.lnProgress.visibility = View.VISIBLE
         } else {
-            Toast.makeText(parentActivity, "đăng nhập thất bại", Toast.LENGTH_SHORT).show()
+            binding.btRegister.visibility = View.VISIBLE
+            binding.lnProgress.visibility = View.GONE
         }
-
     }
-
 
 }

@@ -29,7 +29,7 @@
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/text_color" />
 
-<!--        <meta-data-->
+        <!--        <meta-data-->
         <!--            android:name="com.google.firebase.messaging.default_notification_channel_id"-->
         <!--            android:value="@string/default_notification_channel_id" />-->
         <activity
@@ -43,6 +43,9 @@
         </activity>
 
         <activity android:name=".activity.MainActivity" />
+        <activity
+            android:name=".activity.ChatActivity"
+            android:parentActivityName=".activity.MainActivity" />
 
         <service
             android:name=".service.MyFirebaseMessageService"

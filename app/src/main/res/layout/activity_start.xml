@@ -68,36 +68,7 @@
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/vp2_start_viewpager2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <TextView
-
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/dimen_20"
-        android:fontFamily="sans-serif-light"
-        android:text="@string/continue_with"
-        android:textAllCaps="false"
-        android:textColor="@color/text_color"
-        android:textSize="@dimen/text_13" />
-
-
-    <ImageView
-        android:id="@+id/iv_login_via_google"
-        style="@style/Widget.MaterialComponents.Button.TextButton"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/dimen_30"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/dimen_20"
-        android:adjustViewBounds="true"
-        android:drawableStart="@drawable/ic_icon"
-        android:fontFamily="sans-serif"
-        android:src="@drawable/ic_google"
-        android:text="Tiếp tục với Google"
-        android:textAllCaps="false"
-        android:textColor="@color/button_login"
-        android:textSize="@dimen/text_13" />
+        android:layout_height="match_parent" />
 
 
 </LinearLayout>

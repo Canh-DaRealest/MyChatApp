@@ -11,7 +11,7 @@ inline val Context.ctx: Context
     get() = this
 
 
-fun Context.showSnackBar(view: View, msg: String, isShowLong: Boolean) {
+fun Context.showSnackBar(view: View, msg: String, isShowLong: Boolean = false) {
     val duration: Int = if (isShowLong) {
         Snackbar.LENGTH_LONG
     } else {
